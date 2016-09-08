@@ -4,7 +4,7 @@ The page index.html contains javascript code to access the WebRTC technology of 
 
 For security reasons, the page index.html must be served to your browser from your local system.
 
-### Installation
+### Installation and Operation
 
 1. Download `index.html`
 1. Get a free API key from http://peerjs.com/peerserver

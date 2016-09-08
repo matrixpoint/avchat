@@ -11,7 +11,7 @@ For security reasons, the page index.html must be served to your browser from yo
 1. Replace MY_KEY in `index.html` with your key
 1. Open a terminal console and `cd` to the directory where `index.html` resides
 1. Start a basic server. Two possible variations:
-  * `$ ncat -lk -p 8000 --sh-exec "echo -e `HTTP/1.1 200 OK\r\n`; cat index.html"`
+  * `$ ncat -lk -p 8000 --sh-exec "echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html"`
   * `$ python -m http.server 8000`
 1. In a browser that supports WebRTC, enter the URL [http://localhost:8000](http://localhost:8000)
   * Use the URL [http://localhost:8000?novid](http://localhost:8000?novid) for an audio-only chat

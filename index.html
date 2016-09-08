@@ -1,0 +1,32 @@
+<title>Audio/Video Chat</title>
+<P>Add ?novid to the URL for no video (audio only)</P>
+<script src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
+<video id="video" width="640" height="480" autoplay="true"></video>
+<script>
+var params = new URLSearchParams(location.search);
+var novid = params.get('novid') === null ? false : true;
+var video = document.getElementById('video');
+var me = prompt('Enter my ID');
+var peer = new Peer(me, {key: 'MY_KEY'}); // get your own free key @ http://peerjs.com/peerserver
+peer.on('open', function(id) {
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+	if(navigator.getUserMedia) navigator.getUserMedia(
+		{audio: true, video: (novid ? false : true)}, 
+		function(local) {
+			video.src = window.URL.createObjectURL(local);
+			var you = prompt('Enter an ID to call or leave blank to wait for a call');
+			if(you != '') {
+				var call = peer.call(you, local);
+				call.on('stream', function(remote) {video.src = window.URL.createObjectURL(remote);});
+			} else {
+				peer.on('call', function(call) {
+					alert('incoming call from ' + call.peer + ', click \'ok\' to answer');
+					call.answer(local);
+					call.on('stream', function(remote) {video.src = window.URL.createObjectURL(remote);});
+				});
+			}
+		}, 
+		function(err) {alert("Video capture error: ", err.code);}
+	);
+});
+</script>

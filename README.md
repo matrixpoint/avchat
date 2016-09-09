@@ -6,9 +6,8 @@ For security reasons, the page index.html must be served to your browser from yo
 
 ### Installation and Operation
 
-1. Download `index.html`
 1. Get a free API key from http://peerjs.com/peerserver
-1. Replace MY_KEY in `index.html` with your key
+1. Download `index.html` and replace MY_KEY in `index.html` with your key
 1. Open a terminal console and `cd` to the directory where `index.html` resides
 1. Start a basic server. Two possible variations:
   * `$ ncat -lk -p 8000 --sh-exec "echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html"`
